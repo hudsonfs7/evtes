@@ -1,0 +1,10 @@
+:root {
+  --cor-header: #d5704e;
+  --cor-main: #3498db;
+  --cor-footer: rgb(244, 108, 237);
+  --cor-section: #97f46c;
+  --cor-primaria: #3498db;
+  --cor-navActive: rgba(192, 209, 248, 0.837);
+
+  --fonte-principal: 'Roboto', sans-serif;
+}
