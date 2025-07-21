@@ -1,3 +1,5 @@
+// import { buscarStatus } from '../bd/app.js'
+
 let localidades = [
   { id: 1, nome: 'Teixeira de Freitas' },
   { id: 2, nome: 'Itamaraju' },
@@ -55,5 +57,3 @@ fetch('../registrarEvte.html')
       })
     }
   })
-
-// Cadastro Localidades
