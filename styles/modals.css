@@ -27,6 +27,7 @@ h3 {
 }
 .close {
   position: absolute;
+  z-index: 1;
   right: 10px;
   top: 10px;
   font-size: 24px;
@@ -55,3 +56,11 @@ input {
   height: 30px;
   margin-bottom: 8px;
 }
+
+select {
+  position: relative;
+  width: 31.55%;
+  height: 30px;
+  margin-bottom: 8px;
+}
+
