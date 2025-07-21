@@ -33,17 +33,28 @@ verificarStatus()
 
 async function popularSelectStatus() {
   const statusList = await buscarStatus() // Busca os status do Firebase
-  const selectElement = document.getElementById('tipoEvte') // Pega o seu <select>
+  const selectStatus = document.getElementById('tipoEvte') // Pega o seu <select>
 
-  if (selectElement) {
+  if (selectStatus) {
     // Verifica se o select existe
     statusList.forEach(status => {
       let option = document.createElement('option') // Cria um novo <option>
       option.value = status.id // O valor do option (ex: 'analise')
       option.textContent = status.nome // O texto visível (ex: 'Em análise')
-      selectElement.appendChild(option) // Adiciona o option ao select
+      selectStatus.appendChild(option) // Adiciona o option ao select
     })
   }
 }
 
 popularSelectStatus()
+
+function selecionarLocalidade() {
+  const selectLocalidades = document.getElementById('localidades')
+
+  if (selectLocalidades) {
+    let option = document.createElement('option')
+    option.value = localidades.id
+    option.textContent = localidades.nome
+    selectStatus.appendChild(option)
+  }
+}
