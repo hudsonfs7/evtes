@@ -16,13 +16,13 @@
       <input type="text" name="empresa" id="empresa" placeholder="Empresa" />
     </div>
 
-    <p class="title">Contato</p>
+    <p class="title">Interessado</p>
     <div class="contato">
       <input
         type="text"
-        name="interessado"
-        id="interessado"
-        placeholder="Interessado"
+        name="nomeInteressado"
+        id="nomeInteressado"
+        placeholder="nome"
       />
       <input type="tel" name="telefone" id="telefone" placeholder="Telefone" />
       <input type="email" name="email" id="email" placeholder="E-mail" />
@@ -32,6 +32,7 @@
     <p class="title">EVTE</p>
     <div class="contato">
       <select name="tipoEvte" id="tipoEvte">
+        <option value="">Selecione o tipo EVTE</option>
         <!-- <option value="emissao">Emissão</option>
         <option value="renovacao">Renovação</option>
         <option value="retificacao">Retificação</option> -->
@@ -39,12 +40,12 @@
 
       <select name="status" id="status">
         <option value="">Selecione o status</option>
-        <option value="aprovado">Aprovado</option>
+        <!-- <option value="aprovado">Aprovado</option>
         <option value="pendente">Pendente</option>
-        <option value="reprovado">Reprovado</option>
+        <option value="reprovado">Reprovado</option> -->
       </select>
 
-      <select name="localidade" id="localidades">
+      <select name="localidades" id="localidades">
         <option value="">Selecione a localidade</option>
         <!-- <option value="teixeira de Freitas">Teixeira de Freitas</option>
         <option value="itamaraju">Itamaraju</option>
@@ -61,6 +62,6 @@
     </div>
 
     <button type="submit">Cadastrar</button>
-    <button type="button">Cancelar</button>
+    <button type="button" id="cancel">Cancelar</button>
   </form>
 </div>

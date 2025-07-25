@@ -58,7 +58,7 @@ ul {
 /* Conteúdo */
 
 main {
-  display: flex;
+  display: block;
 
   flex: 25 1 600px;
   flex-wrap: wrap;
@@ -68,6 +68,8 @@ main {
 
   background-color: var(--cor-main);
 }
+
+
 
 /* Menu Lateral */
 

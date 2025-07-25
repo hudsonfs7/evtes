@@ -1,12 +1,5 @@
 // import { buscarStatus } from '../bd/app.js'
 
-let localidades = [
-  { id: 1, nome: 'Teixeira de Freitas' },
-  { id: 2, nome: 'Itamaraju' },
-  { id: 3, nome: 'Eunápolis' },
-  { id: 4, nome: 'Porto Seguro' }
-]
-
 const openMenu = document.getElementById('openMenu')
 const closeMenu = document.getElementById('closeMenu')
 
@@ -40,20 +33,14 @@ fetch('../registrarEvte.html')
 
     const modal = document.getElementById('modal')
     const closeModal = document.getElementById('closeModal')
-    const selecionarLocalidade = document.getElementById('localidade')
+    const cancelModal = document.getElementById('cancel')
 
     if (registrarEvte && modal && closeModal) {
       registrarEvte.onclick = () => (modal.style.display = 'block')
       closeModal.onclick = () => (modal.style.display = 'none')
+      cancelModal.onclick = () => (modal.style.display = 'none')
       window.onclick = e => {
         if (e.target == modal) modal.style.display = 'none'
       }
-    }
-
-    if (selecionarLocalidade) {
-      localidades.forEach(local => {
-        const option = new Option(local.nome, local.id)
-        selecionarLocalidade.add(option)
-      })
     }
   })

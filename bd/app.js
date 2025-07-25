@@ -1,7 +1,8 @@
 import { db } from './db.js' // Ajuste o caminho se necessário
 import {
   collection,
-  getDocs
+  getDocs,
+  addDoc
 } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js'
 
 async function buscarStatus() {
@@ -22,39 +23,79 @@ async function buscarStatus() {
 }
 
 export { buscarStatus } // Exporte a função
+const statusList = await buscarStatus() // Busca os status do Firebase
 
-// Cadastro Localidades
-async function verificarStatus() {
-  const statusRecebidos = await buscarStatus() // Chama a função e aguarda
-  console.log('Dados de status recebidos:', statusRecebidos) // Exibe no console
-}
+let localidades = [
+  { id: 1, nome: 'Teixeira de Freitas' },
+  { id: 2, nome: 'Itamaraju' },
+  { id: 3, nome: 'Eunápolis' },
+  { id: 4, nome: 'Porto Seguro' }
+]
 
-verificarStatus()
+let tiposDeSolicitacao = [
+  { id: 1, nome: 'Nova Solicitação' },
+  { id: 2, nome: 'Renovação' },
+  { id: 3, nome: 'Retificação' },
+  { id: 4, nome: 'MCMV' }
+]
 
-async function popularSelectStatus() {
-  const statusList = await buscarStatus() // Busca os status do Firebase
-  const selectStatus = document.getElementById('tipoEvte') // Pega o seu <select>
+function popularSelect(name, list) {
+  const nameSelect = document.querySelector(`[name=${name}]`)
 
-  if (selectStatus) {
-    // Verifica se o select existe
-    statusList.forEach(status => {
-      let option = document.createElement('option') // Cria um novo <option>
-      option.value = status.id // O valor do option (ex: 'analise')
-      option.textContent = status.nome // O texto visível (ex: 'Em análise')
-      selectStatus.appendChild(option) // Adiciona o option ao select
-    })
-  }
-}
-
-popularSelectStatus()
-
-function selecionarLocalidade() {
-  const selectLocalidades = document.getElementById('localidades')
-
-  if (selectLocalidades) {
+  list.forEach(item => {
     let option = document.createElement('option')
-    option.value = localidades.id
-    option.textContent = localidades.nome
-    selectStatus.appendChild(option)
+    option.value = item.id
+    option.textContent = item.nome
+
+    nameSelect.appendChild(option)
+  })
+}
+
+popularSelect('localidades', localidades)
+popularSelect('status', statusList)
+popularSelect('tipoEvte', tiposDeSolicitacao)
+
+const novaEvte = {
+  empreendimento: 'Olimpo',
+  empresa: 'DSOs',
+
+  nomeInteressado: 'Hudson',
+  telefone: '73982025560',
+  email: 'hudsonfs7@hotmail.com',
+  celular: '73982025560',
+
+  tipo: 'Nova Solicitação',
+  status: ' Em análise',
+  localidade: 'Itamaraju',
+  protocolo: '0000000000000',
+  data: '25/07/2025'
+}
+
+function novaEvte() {
+  const empreendimento = document.querySelector('[name=empreendimento]')
+  const empresa = document.querySelector('[name=empresa]')
+
+  const nomeInteressado = document.querySelector('[name=nomeInteressado]')
+  const telefone = document.querySelector('[name=telefone]')
+  const email = document.querySelector('[name=email]')
+  const celular = document.querySelector('[name=celular]')
+
+  const tipo = document.querySelector('[name=tipo]')
+  const status = document.querySelector('[name=status]')
+  const localidade = document.querySelector('[name=localidade]')
+  const protocolo = document.querySelector('[name=protocolo]')
+  const data = document.querySelector('[name=data]')
+}
+
+async function salvarNovaEvte(novaEvte) {
+  try {
+    const docRef = await addDoc(collection(db, 'evtes'), novaEvte)
+    console.log('Documento escrito com ID: ', docRef.id)
+    return docRef.id
+  } catch (e) {
+    console.error('Erro ao adicionar documento:', e)
+    return null
   }
 }
+
+// salvarNovaEvte(novaEvte)
