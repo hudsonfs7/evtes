@@ -58,27 +58,42 @@ ul {
 /* Conteúdo */
 
 main {
-  display: block;
-
-  flex: 25 1 600px;
+  display: flex;
+  flex-direction: column;
+  flex: 25 1 85vw;
   flex-wrap: wrap;
   height: calc(100vh - 20vh);
-
   padding: 10px;
-
   background-color: var(--cor-main);
 }
 
 table {
   width: 100%;
+  text-align: center;
 }
 
+table th {
+  font-size: 11pt;
+  font-weight: 500;
+  background-color: #3f6aed70;
+}
 
+tr:hover {
+  font-size: 20pt;
+  font-weight: 500;
+  background-color: #ed7c3f70;
+}
+
+table td {
+  font-size: 10pt;
+  font-weight: 400;
+  background-color: #dbd6d670;
+}
 
 /* Menu Lateral */
 
 section {
-  flex: 1 1 200px;
+  flex: 1 1 15vw;
 
   background-color: var(--cor-section);
 }
