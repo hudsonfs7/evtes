@@ -71,23 +71,37 @@ const novaEvte = {
   data: '25/07/2025'
 }
 
-function novaEvte() {
-  const empreendimento = document.querySelector('[name=empreendimento]')
-  const empresa = document.querySelector('[name=empresa]')
+function registrarNovaEvte() {
+  const empreendimento = document.querySelector('[name=empreendimento]').value
+  const empresa = document.querySelector('[name=empresa]').value
 
-  const nomeInteressado = document.querySelector('[name=nomeInteressado]')
-  const telefone = document.querySelector('[name=telefone]')
-  const email = document.querySelector('[name=email]')
-  const celular = document.querySelector('[name=celular]')
+  const nomeInteressado = document.querySelector('[name=nomeInteressado]').value
+  const telefone = document.querySelector('[name=telefone]').value
+  const email = document.querySelector('[name=email]').value
+  const celular = document.querySelector('[name=celular]').value
 
-  const tipo = document.querySelector('[name=tipo]')
-  const status = document.querySelector('[name=status]')
-  const localidade = document.querySelector('[name=localidade]')
-  const protocolo = document.querySelector('[name=protocolo]')
-  const data = document.querySelector('[name=data]')
+  const tipo = document.querySelector('[name=tipoEvte]').value
+  const status = document.querySelector('[name=status]').value
+  const localidade = document.querySelector('[name=localidades]').value
+  const protocolo = document.querySelector('[name=protocolo]').value
+  const data = document.querySelector('[name=data]').value
+
+  return {
+    empreendimento,
+    empresa,
+    nomeInteressado,
+    telefone,
+    email,
+    celular,
+    tipo,
+    status,
+    localidade,
+    protocolo,
+    data
+  }
 }
 
-async function salvarNovaEvte(novaEvte) {
+async function salvarNovaEvte() {
   try {
     const docRef = await addDoc(collection(db, 'evtes'), novaEvte)
     console.log('Documento escrito com ID: ', docRef.id)
@@ -98,4 +112,12 @@ async function salvarNovaEvte(novaEvte) {
   }
 }
 
-// salvarNovaEvte(novaEvte)
+const formNovaEvte = document.getElementById('modal')
+
+formNovaEvte.addEventListener('submit', event => {
+  event.preventDefault()
+
+  const dados = registrarNovaEvte()
+  salvarNovaEvte(dados)
+})
+// salvarNovaEvte(registrarNovaEvte())

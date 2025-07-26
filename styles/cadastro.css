@@ -69,6 +69,10 @@ main {
   background-color: var(--cor-main);
 }
 
+table {
+  width: 100%;
+}
+
 
 
 /* Menu Lateral */
