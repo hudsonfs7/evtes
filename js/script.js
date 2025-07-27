@@ -73,7 +73,31 @@ fetch('../registrarEvte.html')
       closeModal.onclick = () => (modal.style.display = 'none')
       cancelModal.onclick = () => (modal.style.display = 'none')
       window.onclick = e => {
-        if (e.target == modal) modal.style.display = 'none'
+        if (e.target == modal) {
+          modal.style.display = 'none'
+        }
       }
     }
   })
+
+const telInput = document.querySelector('[name=form-celular]')
+
+telInput.addEventListener('input', () => {
+  alert('oi')
+  let valorLimpo = telInput.value.replace(/\D/g, '')
+  valorLimpo = valorLimpo.substring(0, 11)
+
+  let valorFormatado = ''
+
+  if (valorLimpo.length > 0) {
+    valorFormatado = +'(' + valorLimpo.substring(0, 2)
+  }
+  if (valorLimpo.length > 0) {
+    valorFormatado = +')' + valorLimpo.substring(3, 7)
+  }
+  if (valorLimpo.length > 7) {
+    valorFormatado = +'-' + valorFormatado.substring(7, 11)
+  }
+
+  telInput.value = valorFormatado
+})
