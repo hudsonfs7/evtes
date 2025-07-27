@@ -22,8 +22,6 @@ closeMenu.addEventListener('click', () => {
   closeMenu.classList.remove('closeMenuActive')
 })
 
-// Abrir Modal
-
 function zerarForm() {
   // All GETs
   let empreendimento = document.querySelector('[name=form-empreendimento]')
@@ -39,7 +37,6 @@ function zerarForm() {
   let localidade = document.querySelector('[name=localidades]')
   let protocolo = document.querySelector('[name=form-protocolo]')
   let data = document.querySelector('[name=form-data]')
-
   // Limpar os campos do formulário
   empreendimento.value = ''
   empresa.value = ''
@@ -54,8 +51,32 @@ function zerarForm() {
   localidade.value = ''
   protocolo.value = ''
   data.value = ''
+
+  celular.addEventListener('input', () => {
+    // Remove todos os caracteres que não são números
+    // (00) 9.0000-0000
+    let valorLimpo = celular.value.replace(/\D/g, '')
+
+    let valorFormatado = valorLimpo.substring(0, 11)
+
+    if (valorLimpo.length > 0) {
+      valorFormatado = '(' + valorLimpo.substring(0, 2)
+    }
+    if (valorLimpo.length > 2) {
+      valorFormatado += ')' + valorLimpo.substring(2, 3)
+    }
+    if (valorLimpo.length > 3) {
+      valorFormatado += '.' + valorLimpo.substring(3, 7)
+    }
+    if (valorLimpo.length > 7) {
+      valorFormatado += '-' + valorLimpo.substring(7, 11)
+    }
+
+    celular.value = valorFormatado
+  })
 }
 
+// Abrir Modal
 fetch('../registrarEvte.html')
   .then(response => response.text())
   .then(data => {
@@ -79,25 +100,3 @@ fetch('../registrarEvte.html')
       }
     }
   })
-
-const telInput = document.querySelector('[name=form-celular]')
-
-telInput.addEventListener('input', () => {
-  alert('oi')
-  let valorLimpo = telInput.value.replace(/\D/g, '')
-  valorLimpo = valorLimpo.substring(0, 11)
-
-  let valorFormatado = ''
-
-  if (valorLimpo.length > 0) {
-    valorFormatado = +'(' + valorLimpo.substring(0, 2)
-  }
-  if (valorLimpo.length > 0) {
-    valorFormatado = +')' + valorLimpo.substring(3, 7)
-  }
-  if (valorLimpo.length > 7) {
-    valorFormatado = +'-' + valorFormatado.substring(7, 11)
-  }
-
-  telInput.value = valorFormatado
-})
