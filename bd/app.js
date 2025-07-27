@@ -57,22 +57,6 @@ popularSelect('localidades', localidades)
 popularSelect('status', statusList)
 popularSelect('tipoEvte', tiposDeSolicitacao)
 
-const novaEvte = {
-  empreendimento: 'Olimpo',
-  empresa: 'DSOs',
-
-  nomeInteressado: 'Hudson',
-  telefone: '73982025560',
-  email: 'hudsonfs7@hotmail.com',
-  celular: '73982025560',
-
-  tipo: 'Nova Solicitação',
-  status: ' Em análise',
-  localidade: 'Itamaraju',
-  protocolo: '0000000000000',
-  data: '25/07/2025'
-}
-
 function registrarNovaEvte() {
   const dadosFormCad = {
     empreendimento: document.querySelector('[name=form-empreendimento]').value,

@@ -22,9 +22,39 @@ closeMenu.addEventListener('click', () => {
   closeMenu.classList.remove('closeMenuActive')
 })
 
-// alert('Olá, Mundo!')
-
 // Abrir Modal
+
+function zerarForm() {
+  // All GETs
+  let empreendimento = document.querySelector('[name=form-empreendimento]')
+  let empresa = document.querySelector('[name=form-empresa]')
+
+  let nomeInteressado = document.querySelector('[name=form-interessado]')
+  let telefone = document.querySelector('[name=form-telefone]')
+  let email = document.querySelector('[name=form-email]')
+  let celular = document.querySelector('[name=form-celular]')
+
+  let tipo = document.querySelector('[name=tipoEvte]')
+  let status = document.querySelector('[name=status]')
+  let localidade = document.querySelector('[name=localidades]')
+  let protocolo = document.querySelector('[name=form-protocolo]')
+  let data = document.querySelector('[name=form-data]')
+
+  // Limpar os campos do formulário
+  empreendimento.value = ''
+  empresa.value = ''
+
+  nomeInteressado.value = ''
+  telefone.value = ''
+  email.value = ''
+  celular.value = ''
+
+  tipo.value = ''
+  status.value = ''
+  localidade.value = ''
+  protocolo.value = ''
+  data.value = ''
+}
 
 fetch('../registrarEvte.html')
   .then(response => response.text())
@@ -36,7 +66,10 @@ fetch('../registrarEvte.html')
     const cancelModal = document.getElementById('cancel')
 
     if (registrarEvte && modal && closeModal) {
-      registrarEvte.onclick = () => (modal.style.display = 'block')
+      registrarEvte.onclick = () => {
+        modal.style.display = 'block'
+        zerarForm()
+      }
       closeModal.onclick = () => (modal.style.display = 'none')
       cancelModal.onclick = () => (modal.style.display = 'none')
       window.onclick = e => {
