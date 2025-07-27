@@ -2,7 +2,9 @@ import { db } from './db.js' // Ajuste o caminho se necessário
 import {
   collection,
   getDocs,
-  addDoc
+  addDoc,
+  query,
+  orderBy
 } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js'
 
 async function buscarStatus() {
@@ -91,6 +93,38 @@ function registrarNovaEvte() {
   return dadosFormCad
 }
 
+function zerarForm() {
+  // All GETs
+  let empreendimento = document.querySelector('[name=form-empreendimento]')
+  let empresa = document.querySelector('[name=form-empresa]')
+
+  let nomeInteressado = document.querySelector('[name=form-interessado]')
+  let telefone = document.querySelector('[name=form-telefone]')
+  let email = document.querySelector('[name=form-email]')
+  let celular = document.querySelector('[name=form-celular]')
+
+  let tipo = document.querySelector('[name=tipoEvte]')
+  let status = document.querySelector('[name=status]')
+  let localidade = document.querySelector('[name=localidades]')
+  let protocolo = document.querySelector('[name=form-protocolo]')
+  let data = document.querySelector('[name=form-data]')
+
+  // Limpar os campos do formulário
+  empreendimento.value = ''
+  empresa.value = ''
+
+  nomeInteressado.value = ''
+  telefone.value = ''
+  email.value = ''
+  celular.value = ''
+
+  tipo.value = ''
+  status.value = ''
+  localidade.value = ''
+  protocolo.value = ''
+  data.value = ''
+}
+
 async function salvarNovaEvte(dadosEVTE) {
   try {
     const docRef = await addDoc(collection(db, 'evtes'), dadosEVTE)
@@ -109,10 +143,45 @@ formNovaEvte.addEventListener('submit', event => {
   const dados = registrarNovaEvte()
   salvarNovaEvte(dados).then(not => {
     if (not) {
-      alert(not)
+      alert('EVTE Registrada com sucesso!')
+      // formNovaEvte.style.display = 'none'
+      zerarForm()
     } else {
       alert('Erro ao salvar')
     }
   })
 })
-// salvarNovaEvte(registrarNovaEvte())
+
+// Função pupular linhas da tabela com as informações do BD
+async function popularTabela() {
+  const tbody = document.querySelector('[name=list-evtes]')
+
+  tbody.innerHTML = ''
+
+  const consulta = query(collection(db, 'evtes'), orderBy('data', 'desc'))
+  const querySnapshot = await getDocs(consulta)
+
+  querySnapshot.forEach(doc => {
+    const dados = doc.data()
+
+    const newLine = `
+      <tr>
+        <td>${dados.empreendimento}</td>
+        <td>${dados.empresa}</td>
+        <td>${dados.nomeInteressado}</td>
+        <td>${dados.telefone}</td>
+        <td>${dados.email}</td>
+        <td>${dados.celular}</td>
+        <td>${dados.tipo}</td>
+        <td>${dados.status}</td>
+        <td>${dados.localidade}</td>
+        <td>${dados.protocolo}</td>
+        <td>${dados.data}</td>
+      </tr>
+    `
+
+    tbody.innerHTML += newLine
+  })
+}
+
+popularTabela()
