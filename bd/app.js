@@ -141,7 +141,7 @@ formNovaEvte.addEventListener('submit', event => {
   })
 })
 
-// melhorar
+// Estudar o filter para SNAPSHOT e melhorar o Código
 
 const escutarAno = document.getElementById('anoCadastro')
 
