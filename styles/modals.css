@@ -57,7 +57,7 @@ input {
   margin-bottom: 8px;
 }
 
-select {
+.modal-content select {
   position: relative;
   width: 31.55%;
   height: 30px;

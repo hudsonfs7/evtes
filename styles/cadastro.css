@@ -67,6 +67,15 @@ main {
   background-color: var(--cor-main);
 }
 
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.registrarEvte {
+  height: 30px;
+}
+
 table {
   width: 100%;
   text-align: center;

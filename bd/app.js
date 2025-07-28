@@ -46,7 +46,7 @@ function popularSelect(name, list) {
 
   list.forEach(item => {
     let option = document.createElement('option')
-    option.value = item.id
+    // option.value = item.id
     option.textContent = item.nome
 
     nameSelect.appendChild(option)
@@ -109,6 +109,10 @@ function zerarForm() {
   data.value = ''
 }
 
+function atualizarPagina() {
+  location.reload()
+}
+
 async function salvarNovaEvte(dadosEVTE) {
   try {
     const docRef = await addDoc(collection(db, 'evtes'), dadosEVTE)
@@ -130,10 +134,23 @@ formNovaEvte.addEventListener('submit', event => {
       alert('EVTE Registrada com sucesso!')
       // formNovaEvte.style.display = 'none'
       zerarForm()
+      atualizarPagina()
     } else {
       alert('Erro ao salvar')
     }
   })
+})
+
+// melhorar
+
+const escutarAno = document.getElementById('anoCadastro')
+
+let anoEscolhido = document.getElementById('anoCadastro').value
+escutarAno.addEventListener('change', event => {
+  anoEscolhido = document.getElementById('anoCadastro').value
+  console.log(anoEscolhido)
+
+  popularTabela()
 })
 
 // Função pupular linhas da tabela com as informações do BD
@@ -144,11 +161,18 @@ async function popularTabela() {
 
   const consulta = query(collection(db, 'evtes'), orderBy('data', 'desc'))
   const querySnapshot = await getDocs(consulta)
+  console.log()
+
+  // const anoEscolhido = querySnapshot.filter(item => {
+  //   return item.data.endsWith('2024')
+  //   console.log(anoEscolhido)
+  // })
 
   querySnapshot.forEach(doc => {
     const dados = doc.data()
 
-    const newLine = `
+    if (dados.data.endsWith(anoEscolhido)) {
+      const newLine = `
       <tr>
         <td>${dados.empreendimento}</td>
         <td>${dados.empresa}</td>
@@ -164,7 +188,8 @@ async function popularTabela() {
       </tr>
     `
 
-    tbody.innerHTML += newLine
+      tbody.innerHTML += newLine
+    }
   })
 }
 
