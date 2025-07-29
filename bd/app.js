@@ -143,12 +143,12 @@ formNovaEvte.addEventListener('submit', event => {
 
 // Estudar o filter para SNAPSHOT e melhorar o Código
 
-const escutarAno = document.getElementById('anoCadastro')
+const getAno = document.getElementById('anoCadastro')
 
 let anoEscolhido = document.getElementById('anoCadastro').value
-escutarAno.addEventListener('change', event => {
-  anoEscolhido = document.getElementById('anoCadastro').value
-  console.log(anoEscolhido)
+getAno.addEventListener('change', event => {
+  if (getAno.value === 'todos') anoEscolhido = ''
+  else anoEscolhido = document.getElementById('anoCadastro').value
 
   popularTabela()
 })
@@ -161,18 +161,15 @@ async function popularTabela() {
 
   const consulta = query(collection(db, 'evtes'), orderBy('data', 'desc'))
   const querySnapshot = await getDocs(consulta)
-  console.log()
 
-  // const anoEscolhido = querySnapshot.filter(item => {
-  //   return item.data.endsWith('2024')
-  //   console.log(anoEscolhido)
-  // })
+  const snapFiltrado = querySnapshot.docs.filter(item => {
+    return item.data().data.endsWith(anoEscolhido)
+  })
 
-  querySnapshot.forEach(doc => {
-    const dados = doc.data()
+  snapFiltrado.forEach(item => {
+    const dados = item.data()
 
-    if (dados.data.endsWith(anoEscolhido)) {
-      const newLine = `
+    const newLine = `
       <tr>
         <td>${dados.empreendimento}</td>
         <td>${dados.empresa}</td>
@@ -188,8 +185,7 @@ async function popularTabela() {
       </tr>
     `
 
-      tbody.innerHTML += newLine
-    }
+    tbody.innerHTML += newLine
   })
 }
 
