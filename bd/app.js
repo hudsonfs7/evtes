@@ -162,26 +162,26 @@ async function popularTabela() {
   const consulta = query(collection(db, 'evtes'), orderBy('data', 'desc'))
   const querySnapshot = await getDocs(consulta)
 
-  // const snapFiltrado = querySnapshot.docs.filter(item => {
-  //   return item.data().data.endsWith(anoEscolhido)
-  // })
+  const snapFiltrado = querySnapshot.docs.filter(item => {
+    return item.data().data.endsWith(anoEscolhido)
+  })
 
-  querySnapshot.forEach(item => {
+  snapFiltrado.forEach(item => {
     const dados = item.data()
 
     const newLine = `
-      <tr>
-        <td>${dados.empreendimento}</td>
-        <td>${dados.empresa}</td>
-        <td>${dados.nomeInteressado}</td>
-        <td>${dados.telefone}</td>
-        <td>${dados.email}</td>
-        <td>${dados.celular}</td>
-        <td>${dados.tipo}</td>
-        <td>${dados.status}</td>
-        <td>${dados.localidade}</td>
-        <td>${dados.protocolo}</td>
-        <td>${dados.data}</td>
+      <tr id="${item.id}">
+        <td class="dados_empreendimento">${dados.empreendimento}</td>
+        <td class="dados_empresa">${dados.empresa}</td>
+        <td class="dados_nomeInteressado">${dados.nomeInteressado}</td>
+        
+        
+        <td class="dados_celular">${dados.celular}</td>
+        
+        <td class="dados_status">${dados.status}</td>
+        <td class="dados_localidade">${dados.localidade}</td>
+        
+        <td class="dados_data">${dados.data}</td>
       </tr>
     `
 
