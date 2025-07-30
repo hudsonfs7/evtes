@@ -162,11 +162,11 @@ async function popularTabela() {
   const consulta = query(collection(db, 'evtes'), orderBy('data', 'desc'))
   const querySnapshot = await getDocs(consulta)
 
-  const snapFiltrado = querySnapshot.docs.filter(item => {
-    return item.data().data.endsWith(anoEscolhido)
-  })
+  // const snapFiltrado = querySnapshot.docs.filter(item => {
+  //   return item.data().data.endsWith(anoEscolhido)
+  // })
 
-  snapFiltrado.forEach(item => {
+  querySnapshot.forEach(item => {
     const dados = item.data()
 
     const newLine = `
