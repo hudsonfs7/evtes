@@ -639,22 +639,22 @@ const abastecer2023 = [
 ]
 // alert('teste')
 
-async function carregarBD(param) {
-  try {
-    const docRef = await addDoc(collection(db, 'evtes'), param)
-    console.log('Documento escrito com ID: ', docRef.id)
-    return docRef.id
-  } catch (e) {
-    console.log(e)
-  }
-}
+// async function carregarBD(param) {
+//   try {
+//     const docRef = await addDoc(collection(db, 'evtes'), param)
+//     console.log('Documento escrito com ID: ', docRef.id)
+//     return docRef.id
+//   } catch (e) {
+//     console.log(e)
+//   }
+// }
 
-function registrarDados() {
-  abastecer2023.map(item => {
-    carregarBD(item)
-  })
-}
+// function registrarDados() {
+//   abastecer2023.map(item => {
+//     carregarBD(item)
+//   })
+// }
 
-const JogarBD = document.getElementById('abastecerEvte')
+// const JogarBD = document.getElementById('abastecerEvte')
 
-JogarBD.addEventListener('click', () => registrarDados())
+// JogarBD.addEventListener('click', () => registrarDados())

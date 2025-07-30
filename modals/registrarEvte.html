@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="../styles/modals.css" />
+
+<!-- MODAL REGISTER -->
+
+<div id="modal" class="modal">
+  <h3>Cadastrar EVTE</h3>
+  <form class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+
+    <p class="title">Empreendimento</p>
+    <div class="empreendimento">
+      <input
+        type="text"
+        name="form-empreendimento"
+        id="form-empreendimento"
+        placeholder="Empreendimento"
+        required
+      />
+      <input
+        type="text"
+        name="form-empresa"
+        id="form-empresa"
+        placeholder="Empresa"
+        required
+      />
+    </div>
+
+    <p class="title">Interessado</p>
+    <div class="contato">
+      <input
+        type="text"
+        name="form-interessado"
+        id="form-interessado"
+        placeholder="nome"
+        required
+      />
+      <input
+        type="tel"
+        name="form-telefone"
+        id="form-telefone"
+        placeholder="Telefone"
+      />
+      <input
+        type="email"
+        name="form-email"
+        id="form-email"
+        placeholder="E-mail"
+        required
+      />
+      <input
+        type="tel"
+        name="form-celular"
+        id="form-celular"
+        placeholder="Celular"
+      />
+    </div>
+
+    <p class="title">EVTE</p>
+    <div class="contato">
+      <select name="tipoEvte" id="tipoEvte" required>
+        <option value="" disable selected>Selecione o tipo EVTE</option>
+        <!-- <option value="emissao">Emissão</option>
+        <option value="renovacao">Renovação</option>
+        <option value="retificacao">Retificação</option> -->
+      </select>
+
+      <select name="status" id="status" required>
+        <option value="" disable selected>Selecione o status</option>
+        <!-- <option value="aprovado">Aprovado</option>
+        <option value="pendente">Pendente</option>
+        <option value="reprovado">Reprovado</option> -->
+      </select>
+
+      <select name="localidades" id="localidades" required>
+        <option value="" disable selected>Selecione a localidade</option>
+        <!-- <option value="teixeira de Freitas">Teixeira de Freitas</option>
+        <option value="itamaraju">Itamaraju</option>
+        <option value="eunapolis">Eunápolis</option>
+        <option value="portoSeguro">Porto Seguro</option> -->
+      </select>
+      <input
+        type="number"
+        name="form-protocolo"
+        id="form-protocolo"
+        placeholder="Protocolo"
+        required
+      />
+      <input type="date" name="form-data" id="form-date" required />
+    </div>
+
+    <button type="submit">Cadastrar</button>
+    <button type="button" id="cancel">Cancelar</button>
+  </form>
+</div>

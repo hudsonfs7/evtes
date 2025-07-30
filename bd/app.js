@@ -134,7 +134,7 @@ formNovaEvte.addEventListener('submit', event => {
       alert('EVTE Registrada com sucesso!')
       // formNovaEvte.style.display = 'none'
       zerarForm()
-      atualizarPagina()
+      // atualizarPagina()
     } else {
       alert('Erro ao salvar')
     }
