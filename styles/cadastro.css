@@ -62,7 +62,7 @@ main {
   flex-direction: column;
   flex: 25 1 85vw;
   flex-wrap: wrap;
-  height: calc(100vh - 20vh);
+  min-height: calc(100vh - 20vh);
   padding: 10px;
   background-color: var(--cor-main);
 }
