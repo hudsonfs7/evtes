@@ -191,20 +191,24 @@ async function popularTabela() {
 
 popularTabela()
 
+// Views dos dados de 01 linha
+const empreendimentoView = document.querySelector('[id=empreendimentoView]')
 const tbodyTabela = document.querySelector('[name=list-evtes]')
+let idLinhaClicada = ''
 
 tbodyTabela.addEventListener('click', event => {
   const linhaClicada = event.target.closest('tr')
+
   const linhaClicadaAnterior = document.querySelector(
     '[class=linhaSelecionada]'
   )
 
   if (linhaClicadaAnterior) {
-    linhaClicadaAnterior.classList.remove('linhaSelecionada')
     linhaClicada.classList.toggle('linhaSelecionada')
+    linhaClicadaAnterior.classList.remove('linhaSelecionada')
   } else {
     linhaClicada.classList.toggle('linhaSelecionada')
   }
 
-  console.log(linhaClicada, linhaClicada.id, linhaClicadaAnterior)
+  idLinhaClicada = linhaClicada.id
 })
