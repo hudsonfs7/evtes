@@ -101,28 +101,29 @@ fetch('../modals/registrarEvte.html')
     }
   })
 
+// Abrir Modal View
+const modalViewButton = document.getElementById('abastecerEvte')
+
+// Abrir Modal
 fetch('../modals/viewEvte.html')
   .then(response => response.text())
   .then(data => {
     document.body.insertAdjacentHTML('beforeend', data)
 
-    const modal = document.getElementById('modal')
-    const closeModal = document.getElementById('closeModal')
-    const cancelModal = document.getElementById('cancel')
+    const modalView = document.getElementById('modalView')
+    const closeModalView = document.getElementById('closeModalView')
+    const cancelModalView = document.getElementById('cancelView')
 
-    if (registrarEvte && modal && closeModal) {
-      registrarEvte.onclick = () => {
-        modal.style.display = 'block'
-        zerarForm()
+    if (modalViewButton && modalView && closeModalView) {
+      modalViewButton.onclick = () => {
+        modalView.style.display = 'block'
       }
-      closeModal.onclick = () => (modal.style.display = 'none')
-      cancelModal.onclick = () => (modal.style.display = 'none')
+      closeModalView.onclick = () => (modalView.style.display = 'none')
+      cancelModalView.onclick = () => (modalView.style.display = 'none')
       window.onclick = e => {
-        if (e.target == modal) {
-          modal.style.display = 'none'
+        if (e.target == modalView) {
+          modalView.style.display = 'none'
         }
       }
     }
   })
-
-JogarBD.addEventListener('click', () => {})
