@@ -190,3 +190,10 @@ async function popularTabela() {
 }
 
 popularTabela()
+
+const tbodyTabela = document.querySelector('[name=list-evtes]')
+
+tbodyTabela.addEventListener('click', event => {
+  const linhaClicada = event.target.closest('tr')
+  console.log(linhaClicada)
+})
