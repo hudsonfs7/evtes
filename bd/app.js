@@ -195,5 +195,16 @@ const tbodyTabela = document.querySelector('[name=list-evtes]')
 
 tbodyTabela.addEventListener('click', event => {
   const linhaClicada = event.target.closest('tr')
-  console.log(linhaClicada)
+  const linhaClicadaAnterior = document.querySelector(
+    '[class=linhaSelecionada]'
+  )
+
+  if (linhaClicadaAnterior) {
+    linhaClicadaAnterior.classList.remove('linhaSelecionada')
+    linhaClicada.classList.toggle('linhaSelecionada')
+  } else {
+    linhaClicada.classList.toggle('linhaSelecionada')
+  }
+
+  console.log(linhaClicada, linhaClicada.id, linhaClicadaAnterior)
 })

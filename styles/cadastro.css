@@ -93,6 +93,12 @@ tr:hover {
   background-color: #e2621c70;
 }
 
+tr.linhaSelecionada {
+  font-size: 20pt;
+  font-weight: 500;
+  background-color: #e2611cde;
+}
+
 table td {
   font-size: 10pt;
   font-weight: 400;
