@@ -195,7 +195,7 @@ popularTabela()
 // MOSTRAR 01 EVTE NA MODAL
 const tbodyTabela = document.querySelector('[name=list-evtes]')
 
-// GETS EVTES
+// GETS DADOS EVTES
 let empreendimentoView = document.querySelector('[name=empreendimentoView]')
 let empresaView = document.querySelector('[name=empresaView]')
 
@@ -210,21 +210,8 @@ let localidadeView = document.querySelector('[name=localidadesView]')
 let protocoloView = document.querySelector('[name=protocoloView]')
 let dataView = document.querySelector('[name=dataView]')
 
-//
-
-empreendimentoView.innerHTML = 'Pronto'
-empresaView.innerHTML = 'Pronto'
-
-nomeInteressadoView.innerHTML = 'Pronto'
-telefoneView.innerHTML = 'Pronto'
-emailView.innerHTML = 'Pronto'
-celularView.innerHTML = 'Pronto'
-
-tipoView.innerHTML = 'Pronto'
-statusView.innerHTML = 'Pronto'
-localidadeView.innerHTML = 'Pronto'
-protocoloView.innerHTML = 'Pronto'
-dataView.innerHTML = 'Pronto'
+// ID LINHA SELECIONADA
+let idLinhaSelecionada = ''
 
 tbodyTabela.addEventListener('click', event => {
   const linhaClicada = event.target.closest('tr')
@@ -239,21 +226,40 @@ tbodyTabela.addEventListener('click', event => {
   } else {
     linhaClicada.classList.toggle('linhaSelecionada')
   }
-})
 
-let idEvteView = 'z5SuPdCqF2KUfG9rYhMq'
+  idLinhaSelecionada = linhaClicada.id
+})
 
 async function showView(id) {
   try {
     const consultaDocView = doc(db, 'evtes', id)
     const snapDocView = await getDoc(consultaDocView)
     const dadosDocView = snapDocView.data()
-  } catch (e) {
-    console.error('Erro: ', e)
-  }
 
-  empreendimentoView.innerHTML = dadosDocView.empreendimento
-  
+    empreendimentoView.innerHTML = dadosDocView.empreendimento
+    empresaView.innerHTML = dadosDocView.empresa
+
+    nomeInteressadoView.innerHTML = dadosDocView.nomeInteressado
+    telefoneView.innerHTML = dadosDocView.telefone
+    emailView.innerHTML = dadosDocView.email
+    celularView.innerHTML = dadosDocView.celular
+
+    tipoView.innerHTML = dadosDocView.tipo
+    statusView.innerHTML = dadosDocView.status
+    localidadeView.innerHTML = dadosDocView.localidade
+    protocoloView.innerHTML = dadosDocView.protocolo
+    dataView.innerHTML = dadosDocView.data
+  } catch (e) {
+    console.error('Erro ao buscar documento:', e)
+
+    return null
+  }
 }
 
-showView(idEvteView)
+// BOTÃO VIEW EVTE
+let viewEvteButton = document.querySelector('[id=verDados]')
+viewEvteButton.addEventListener('click', event => {
+  showView(idLinhaSelecionada)
+
+  modalView.style.display = 'block'
+})
