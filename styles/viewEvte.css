@@ -1,5 +1,5 @@
 .modalView {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 10;
   left: 0;
@@ -18,7 +18,7 @@ h3 {
 }
 .viewForm {
   background: #fff;
-  margin: 2px auto 10px auto;
+  margin: 10px auto 10px auto;
 
   padding: 20px;
   width: 70vw;
@@ -34,15 +34,18 @@ h3 {
   cursor: pointer;
 }
 
-.empreendimentoView,
-.contatoView {
+.dadosEmpreendimentoView,
+.contatoView,
+.dadosEvteView {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+
+  gap: 15px;
   width: 100%;
   border: 1px solid #454545aa;
   margin-bottom: 20px;
   padding: 7px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 p.title {
@@ -54,11 +57,17 @@ p.title {
 
 span.view {
   position: relative;
-  width: 48%;
-  line-height: 28px;
+  width: 40%;
+  line-height: 25px;
 
-  background-color: #65555866;
+  background-color: rgba(61, 74, 115, 0.083);
   display: block;
+
+  font-size: 14px;
+  color: var(--cor-infoForm);
+  font-family: var(--fonte-form);
+  font-weight: 500;
+
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
