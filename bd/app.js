@@ -4,7 +4,9 @@ import {
   getDocs,
   addDoc,
   query,
-  orderBy
+  orderBy,
+  doc,
+  getDoc
 } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js'
 
 async function buscarStatus() {
@@ -184,17 +186,45 @@ async function popularTabela() {
         <td class="dados_data">${dados.data}</td>
       </tr>
     `
-
     tbody.innerHTML += newLine
   })
 }
 
 popularTabela()
 
-// Views dos dados de 01 linha
-const empreendimentoView = document.querySelector('[id=empreendimentoView]')
+// MOSTRAR 01 EVTE NA MODAL
 const tbodyTabela = document.querySelector('[name=list-evtes]')
-let idLinhaClicada = ''
+
+// GETS EVTES
+let empreendimentoView = document.querySelector('[name=empreendimentoView]')
+let empresaView = document.querySelector('[name=empresaView]')
+
+let nomeInteressadoView = document.querySelector('[name=interessadoView]')
+let telefoneView = document.querySelector('[name=telefoneView]')
+let emailView = document.querySelector('[name=emailView]')
+let celularView = document.querySelector('[name=celularView]')
+
+let tipoView = document.querySelector('[name=tipoEvteView]')
+let statusView = document.querySelector('[name=statusView]')
+let localidadeView = document.querySelector('[name=localidadesView]')
+let protocoloView = document.querySelector('[name=protocoloView]')
+let dataView = document.querySelector('[name=dataView]')
+
+//
+
+empreendimentoView.innerHTML = 'Pronto'
+empresaView.innerHTML = 'Pronto'
+
+nomeInteressadoView.innerHTML = 'Pronto'
+telefoneView.innerHTML = 'Pronto'
+emailView.innerHTML = 'Pronto'
+celularView.innerHTML = 'Pronto'
+
+tipoView.innerHTML = 'Pronto'
+statusView.innerHTML = 'Pronto'
+localidadeView.innerHTML = 'Pronto'
+protocoloView.innerHTML = 'Pronto'
+dataView.innerHTML = 'Pronto'
 
 tbodyTabela.addEventListener('click', event => {
   const linhaClicada = event.target.closest('tr')
@@ -209,6 +239,21 @@ tbodyTabela.addEventListener('click', event => {
   } else {
     linhaClicada.classList.toggle('linhaSelecionada')
   }
-
-  idLinhaClicada = linhaClicada.id
 })
+
+let idEvteView = 'z5SuPdCqF2KUfG9rYhMq'
+
+async function showView(id) {
+  try {
+    const consultaDocView = doc(db, 'evtes', id)
+    const snapDocView = await getDoc(consultaDocView)
+    const dadosDocView = snapDocView.data()
+  } catch (e) {
+    console.error('Erro: ', e)
+  }
+
+  empreendimentoView.innerHTML = dadosDocView.empreendimento
+  
+}
+
+showView(idEvteView)
