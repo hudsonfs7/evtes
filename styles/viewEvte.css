@@ -36,12 +36,6 @@ label.titleView {
   font-weight: 600;
 }
 
-input:read-only {
-  font-family: 'Poppins' sans-serif;
-  color: rgba(104, 125, 165, 1);
-  font-weight: 500;
-}
-
 input.view {
   margin: 0;
   width: 200px;
@@ -50,11 +44,18 @@ input.view {
   border-bottom: 1px solid #4545458b;
   box-shadow: none;
   text-align: left;
+  background-color: #c9745d4f;
 
   font-family: var(--fonte-secundaria);
   font-size: 11pt;
+  color: var(--cor-titleForm);
+}
 
-  font-weight: 400;
+input:read-only {
+  font-family: 'Poppins' sans-serif;
+  color: var(--cor-infoForm);
+  font-weight: 500;
+  background-color: #625dc90f;
 }
 
 .dadosEmpreendimentoView {
@@ -64,7 +65,8 @@ input.view {
   border: 1px solid #45454550;
   gap: 15px;
   padding: 1rem;
-  border-radius: 5px;
+  border-radius: 4px;
+  margin-bottom: 16px;
 }
 .dadosEmpreendimentoView input {
   width: 300px;
@@ -77,18 +79,19 @@ input.view {
   border: 1px solid #45454550;
   gap: 15px;
   padding: 1rem;
-  border-radius: 5px;
+  border-radius: 4px;
+  margin-bottom: 16px;
 }
 
 .dadosEvteView {
   display: grid;
-  grid-template-columns: 15% 40% 15% 40%;
+  grid-template-columns: 10% 40% 10% 40%;
 
-  gap: 15px;
-  width: 100%;
-  border: 1px solid #454545aa;
-  margin-bottom: 20px;
-  padding: 7px;
+  border: 1px solid #45454550;
+  gap: 10px;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 16px;
   /* text-align: center; */
 }
 
@@ -106,4 +109,30 @@ input.view {
   width: 31.55%;
   height: 30px;
   margin-bottom: 8px;
+}
+
+button.buttonsUpdateView {
+  padding: 4px 8px 4px 8px;
+  background-color: none;
+  border: 1px solid #625dc9;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 4px;
+
+  transition: ease-in-out 0.3s;
+}
+
+button#cancelView {
+  background-color: #c9745da1;
+  border: 1px solid #c9755d;
+  color: #fff;
+}
+
+button#cancelView:hover {
+  background-color: #c9745d;
+}
+
+button.buttonsUpdateView:hover {
+  background-color: #625dc967;
+  border: 1px solid #625dc9;
 }
