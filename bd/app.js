@@ -236,19 +236,19 @@ async function showView(id) {
     const snapDocView = await getDoc(consultaDocView)
     const dadosDocView = snapDocView.data()
 
-    empreendimentoView.innerHTML = dadosDocView.empreendimento
-    empresaView.innerHTML = dadosDocView.empresa
+    empreendimentoView.value = dadosDocView.empreendimento
+    empresaView.value = dadosDocView.empresa
 
-    nomeInteressadoView.innerHTML = dadosDocView.nomeInteressado
-    telefoneView.innerHTML = dadosDocView.telefone
-    emailView.innerHTML = dadosDocView.email
-    celularView.innerHTML = dadosDocView.celular
+    nomeInteressadoView.value = dadosDocView.nomeInteressado
+    telefoneView.value = dadosDocView.telefone
+    emailView.value = dadosDocView.email
+    celularView.value = dadosDocView.celular
 
-    tipoView.innerHTML = dadosDocView.tipo
-    statusView.innerHTML = dadosDocView.status
-    localidadeView.innerHTML = dadosDocView.localidade
-    protocoloView.innerHTML = dadosDocView.protocolo
-    dataView.innerHTML = dadosDocView.data
+    tipoView.value = dadosDocView.tipo
+    statusView.value = dadosDocView.status
+    localidadeView.value = dadosDocView.localidade
+    protocoloView.value = dadosDocView.protocolo
+    dataView.value = dadosDocView.data
   } catch (e) {
     console.error('Erro ao buscar documento:', e)
 
@@ -262,4 +262,5 @@ viewEvteButton.addEventListener('click', event => {
   showView(idLinhaSelecionada)
 
   modalView.style.display = 'block'
+  
 })
