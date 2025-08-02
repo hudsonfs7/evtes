@@ -13,37 +13,136 @@
       readonly
     />
 
-    <p class="title">Empreendimento</p>
+    <label class="titleView">Sobre o empreendimento</label>
     <div class="dadosEmpreendimentoView">
-      <div class="">
-        <span id="empreendimentoView" class="view" name="empreendimentoView"
-          >Nome Empreendimento</span
-        >
-        <span id="empreendimentoView" class="view" name="empreendimentoView"
-          >Residencial Olimpo</span
-        >
+      <div class="nomeEmpreendimentoView">
+        <label class="inforView">Nome: </label>
+        <input
+          type="text"
+          class="view"
+          name="empreendimentoView"
+          id="empreendimentoView"
+          value="Empreendimento Olimpo"
+          readonly
+        />
       </div>
-      <span class="view" name="empresaView">Olimpo SA</span>
+
+      <div class="nomeEmpresaView">
+        <label class="inforView">Empresa: </label>
+        <input
+          type="text"
+          class="view"
+          name="empresaView"
+          id="empresaView"
+          value="Olimpo's SA"
+          readonly
+        />
+      </div>
     </div>
 
-    <p class="title">Interessado</p>
+    <label class="titleView">Interessado</label>
 
     <div class="contatoView">
-      <span class="view" name="interessadoView">Hudson Souza</span>
-      <span class="view" name="telefoneView">(00)0000-0000</span>
-    </div>
-    <div class="contatoView">
-      <span class="view" name="emailView">teste@teste.com</span>
-      <span class="view" name="celularView">(00)0.0000-0000</span>
+      <div class="nomeInteressadoView">
+        <label class="inforView">Nome</label>
+        <input
+          type="text"
+          class="view"
+          name="interessadoView"
+          id="interessadoView"
+          value="Hudson Souza"
+          readonly
+        />
+      </div>
+
+      <div class="enderecoEmailView">
+        <label class="inforView">E-mail</label>
+        <input
+          type="email"
+          class="view"
+          name="emailView"
+          id="emailView"
+          value="teste@teste.com"
+          readonly
+        />
+      </div>
+
+      <div class="numeroTelefoneView">
+        <label class="inforView">Telefone</label>
+        <input
+          type="number"
+          class="view"
+          name="telefoneView"
+          id="telefoneView"
+          value="0000000000"
+          readonly
+        />
+      </div>
+
+      <div class="numeroCelularView">
+        <label class="inforView">Celular</label>
+        <input
+          type="text"
+          class="view"
+          name="celularView"
+          id="celularView"
+          value="(00)0.0000-0000"
+          readonly
+        />
+      </div>
     </div>
 
-    <p class="titleView">EVTE</p>
+    <label class="titleView">EVTE</label>
     <div class="dadosEvteView">
-      <span class="view" name="tipoEvteView">Emissão</span>
-      <span class="view" name="statusView">Em Análise</span>
-      <span class="view" name="localidadesView">Itamaraju</span>
-      <span class="view" name="protocoloView">Protocolo</span>
-      <span class="view" name="dataView">25/07/2025</span>
+      <label class="inforView">Tipo</label>
+      <input
+        type="text"
+        class="view"
+        name="tipoEvteView"
+        id="tipoEvteView"
+        value="Emissão"
+        readonly
+      />
+
+      <label class="inforView">Status</label>
+      <input
+        type="text"
+        class="view"
+        name="statusView"
+        id="statusView"
+        value="Em Análise"
+        readonly
+      />
+
+      <label class="inforView">Localidade</label>
+      <input
+        type="text"
+        class="view"
+        name="localidadesView"
+        id="localidadesView"
+        value="Itamaraju"
+        readonly
+      />
+
+      <label class="inforView">Protocolo</label>
+      <input
+        type="text"
+        class="view"
+        name="protocoloView"
+        id="protocoloView"
+        value="Protocolo"
+        readonly
+      />
+
+      <label class="inforView">Data</label>
+      <input
+        type="text"
+        class="view"
+        name="dataView"
+        id="dataView"
+        value="25/07/2025"
+        readonly
+      />
     </div>
 
     <button type="submit">Editar</button>

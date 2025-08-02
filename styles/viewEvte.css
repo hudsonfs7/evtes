@@ -9,49 +9,80 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
+.viewForm {
+  background: #fff;
+  margin: 10px auto 10px auto;
+
+  padding: 20px;
+  width: 75vw;
+  border-radius: 8px;
+  position: relative;
+}
+
 #inforevte {
   width: 200px;
   outline: none;
   border: 1px solid rgba(255, 68, 0, 0.407);
   box-shadow: none;
   text-align: center;
+
+  background-color: #c9755d;
+  color: #fff;
+}
+
+label.titleView {
+  display: block;
+  font-family: var(--fonte-secundaria);
+  font-weight: 600;
 }
 
 input:read-only {
   font-family: 'Poppins' sans-serif;
   color: rgba(104, 125, 165, 1);
+  font-weight: 500;
 }
 
-h3 {
-  margin: 20px auto 0px auto;
-  width: 500px;
-  color: #fff;
+input.view {
+  margin: 0;
+  width: 200px;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid #4545458b;
+  box-shadow: none;
+  text-align: left;
+
+  font-family: var(--fonte-secundaria);
+  font-size: 11pt;
+
   font-weight: 400;
-  font-family: var(--fonte-principal);
-}
-.viewForm {
-  background: #fff;
-  margin: 10px auto 10px auto;
-
-  padding: 20px;
-  width: 70vw;
-  border-radius: 8px;
-  position: relative;
-}
-.closeView {
-  position: absolute;
-  z-index: 1;
-  right: 10px;
-  top: 10px;
-  font-size: 24px;
-  cursor: pointer;
 }
 
-.dadosEmpreendimentoView,
-.contatoView,
+.dadosEmpreendimentoView {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  border: 1px solid #45454550;
+  gap: 15px;
+  padding: 1rem;
+  border-radius: 5px;
+}
+.dadosEmpreendimentoView input {
+  width: 300px;
+}
+
+.contatoView {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  border: 1px solid #45454550;
+  gap: 15px;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
 .dadosEvteView {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 
   gap: 15px;
   width: 100%;
@@ -61,28 +92,13 @@ h3 {
   /* text-align: center; */
 }
 
-p.title {
-  position: relative;
-  font-size: 12pt;
-  color: #333;
-  background-color: #fff;
-}
-
-span.view {
-  position: relative;
-  width: 40%;
-  line-height: 25px;
-
-  background-color: rgba(61, 74, 115, 0.083);
-  display: block;
-
-  font-size: 14px;
-  color: var(--cor-infoForm);
-  font-family: var(--fonte-form);
-  font-weight: 500;
-
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.closeView {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .modal-content select {

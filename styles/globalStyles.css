@@ -6,9 +6,9 @@
   --cor-primaria: #3498db;
   --cor-navActive: rgba(192, 209, 248, 0.837);
 
-  --cor-titleForm: rgba(33, 64, 106, 0.985);
-  --cor-infoForm: rgb(61, 74, 115);
+  --cor-titleForm: rgba(38, 63, 107, 0.95);
+  --cor-infoForm: rgba(104, 125, 165, 1);
 
   --fonte-principal: 'Roboto', sans-serif;
-  --c: 'Poppins', sans-serif;
+  --fonte-secundaria: 'Poppins', sans-serif;
 }
