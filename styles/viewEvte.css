@@ -9,6 +9,19 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
+#inforevte {
+  width: 200px;
+  outline: none;
+  border: 1px solid rgba(255, 68, 0, 0.407);
+  box-shadow: none;
+  text-align: center;
+}
+
+input:read-only {
+  font-family: 'Poppins' sans-serif;
+  color: rgba(104, 125, 165, 1);
+}
+
 h3 {
   margin: 20px auto 0px auto;
   width: 500px;
