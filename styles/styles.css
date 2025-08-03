@@ -33,7 +33,16 @@ header {
   align-items: center;
 
   background-color: var(--cor-header);
-  color: white;
+  color: rgb(0, 0, 0);
+  box-shadow: 0px 5px 10px #888888 !important;
+}
+
+.logo h2 {
+  color: var(--cor-logo-strong);
+}
+
+.logo span {
+  color: var(--cor-logo);
 }
 
 #openMenu,
@@ -65,7 +74,7 @@ main {
 
   padding: 10px;
 
-  background-color: var(--cor-primaria);
+  background-color: var(--cor-main);
 }
 
 /* Menu Lateral */

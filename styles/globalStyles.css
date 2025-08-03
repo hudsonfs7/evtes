@@ -1,10 +1,15 @@
 :root {
-  --cor-header: #d5704e;
-  --cor-main: #3498db;
+  --hue: 216;
+
+  --cor-header: #ffffff;
+  --cor-main: #ffffffd2;
   --cor-footer: rgb(244, 108, 237);
   --cor-section: #97f46c;
   --cor-primaria: #3498db;
   --cor-navActive: rgba(192, 209, 248, 0.837);
+
+  --cor-logo-strong: hsl(var(--hue) 36% 47%);
+  --cor-logo: hsl(var(--hue) 41% 25%);
 
   --cor-titleForm: rgba(38, 63, 107, 0.95);
   --cor-infoForm: rgba(104, 125, 165, 1);

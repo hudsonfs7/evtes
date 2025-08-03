@@ -1,13 +1,12 @@
 /* Geral */
 @import url('./globalStyles.css');
+@import url('./styles.css');
 
 * {
   box-sizing: border-box;
   margin: 0;
-
   list-style: none;
   text-decoration: none;
-
   font-family: var(--fonte-principal);
 }
 
@@ -15,26 +14,11 @@ body {
   display: flex;
   flex-wrap: wrap;
 
-  background-color: rgb(57, 166, 88);
-
   color: #333;
   line-height: 1.6;
 }
 
-/* Cabeçalhos */
 
-header {
-  display: flex;
-  padding: 0px 10px;
-  height: 10vh;
-  flex: 1 1 100vw;
-
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-
-  background-color: var(--cor-header);
-}
 
 #openMenu,
 #closeMenu {
