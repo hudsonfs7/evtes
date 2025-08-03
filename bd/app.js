@@ -11,7 +11,7 @@ import {
   deleteDoc
 } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js'
 
-// Abrir Modal
+// ABRIR MODAL VIEW
 fetch('../modals/viewEvte.html')
   .then(response => response.text())
   .then(data => {
@@ -29,6 +29,32 @@ fetch('../modals/viewEvte.html')
       if (e.target == modalView) {
         estabilizeModal()
         modalView.style.display = 'none'
+      }
+    }
+  })
+
+
+  // ABRIR MODAL REGISTRO
+fetch('../modals/registrarEvte.html')
+  .then(response => response.text())
+  .then(data => {
+    document.body.insertAdjacentHTML('beforeend', data)
+
+    const modal = document.getElementById('modal')
+    const closeModal = document.getElementById('closeModal')
+    const cancelModal = document.getElementById('cancel')
+
+    if (registrarEvte && modal && closeModal) {
+      registrarEvte.onclick = () => {
+        modal.style.display = 'block'
+        zerarForm()
+      }
+      closeModal.onclick = () => (modal.style.display = 'none')
+      cancelModal.onclick = () => (modal.style.display = 'none')
+      window.onclick = e => {
+        if (e.target == modal) {
+          modal.style.display = 'none'
+        }
       }
     }
   })

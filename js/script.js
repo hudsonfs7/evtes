@@ -76,30 +76,7 @@ function zerarForm() {
   })
 }
 
-// Abrir Modal
-fetch('../modals/registrarEvte.html')
-  .then(response => response.text())
-  .then(data => {
-    document.body.insertAdjacentHTML('beforeend', data)
 
-    const modal = document.getElementById('modal')
-    const closeModal = document.getElementById('closeModal')
-    const cancelModal = document.getElementById('cancel')
-
-    if (registrarEvte && modal && closeModal) {
-      registrarEvte.onclick = () => {
-        modal.style.display = 'block'
-        zerarForm()
-      }
-      closeModal.onclick = () => (modal.style.display = 'none')
-      cancelModal.onclick = () => (modal.style.display = 'none')
-      window.onclick = e => {
-        if (e.target == modal) {
-          modal.style.display = 'none'
-        }
-      }
-    }
-  })
 
 // Abrir Modal View
 // const modalViewButton = document.getElementById('abastecerEvte')
