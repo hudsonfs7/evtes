@@ -212,6 +212,7 @@ let dataView = document.querySelector('[name=dataView]')
 
 // ID LINHA SELECIONADA
 let idLinhaSelecionada = ''
+const buttonVisualizar = document.querySelector('[id=verDados]')
 
 tbodyTabela.addEventListener('click', event => {
   const linhaClicada = event.target.closest('tr')
@@ -220,16 +221,29 @@ tbodyTabela.addEventListener('click', event => {
     '[class=linhaSelecionada]'
   )
 
-  if (linhaClicadaAnterior) {
-    linhaClicada.classList.toggle('linhaSelecionada')
-    linhaClicadaAnterior.classList.remove('linhaSelecionada')
-  } else {
-    linhaClicada.classList.toggle('linhaSelecionada')
+  if (linhaClicada) {
+    if (linhaClicadaAnterior === linhaClicada) {
+      // Se a linha clicada já for a selecionada, deseleciona
+      linhaClicada.classList.remove('linhaSelecionada')
+      console.log('N Existe1')
+      buttonVisualizar.classList.add('ocultar')
+    } else {
+      // Caso contrário, remove a seleção da anterior (se existir)
+      if (linhaClicadaAnterior) {
+        linhaClicadaAnterior.classList.remove('linhaSelecionada')
+        buttonVisualizar.classList.add('ocultar')
+      }
+      // E adiciona a seleção à nova linha clicada
+      linhaClicada.classList.add('linhaSelecionada')
+      console.log('Existe')
+      buttonVisualizar.classList.remove('ocultar')
+    }
   }
 
   idLinhaSelecionada = linhaClicada.id
 })
 
+// POPULAR A MODAL VIEW COM OS DADOS DE 01 LINHA SELECIONADA
 async function showView(id) {
   try {
     const consultaDocView = doc(db, 'evtes', id)
@@ -262,5 +276,30 @@ viewEvteButton.addEventListener('click', event => {
   showView(idLinhaSelecionada)
 
   modalView.style.display = 'block'
-  
+})
+
+// ATIVAR BOTÃO EDITAR
+
+const updateButton = document.querySelector('[id=updateView]')
+
+function allowEdit() {
+  empreendimentoView.removeAttribute('readonly')
+  empresaView.removeAttribute('readonly')
+
+  nomeInteressadoView.removeAttribute('readonly')
+  telefoneView.removeAttribute('readonly')
+  emailView.removeAttribute('readonly')
+  celularView.removeAttribute('readonly')
+
+  tipoView.removeAttribute('readonly')
+  statusView.removeAttribute('readonly')
+  localidadeView.removeAttribute('readonly')
+  protocoloView.removeAttribute('readonly')
+  dataView.removeAttribute('readonly')
+}
+
+const editButton = document.querySelector('[id=editView]')
+editButton.addEventListener('click', event => {
+  updateButton.classList.remove('ocultar')
+  allowEdit()
 })
