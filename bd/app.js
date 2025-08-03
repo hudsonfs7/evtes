@@ -7,8 +7,31 @@ import {
   orderBy,
   doc,
   getDoc,
-  updateDoc
+  updateDoc,
+  deleteDoc
 } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js'
+
+// Abrir Modal
+fetch('../modals/viewEvte.html')
+  .then(response => response.text())
+  .then(data => {
+    document.body.insertAdjacentHTML('beforeend', data)
+
+    const modalView = document.getElementById('modalView')
+    const closeModalView = document.getElementById('closeModalView')
+
+    closeModalView.onclick = () => {
+      modalView.style.display = 'none'
+      estabilizeModal()
+    }
+
+    window.onclick = e => {
+      if (e.target == modalView) {
+        estabilizeModal()
+        modalView.style.display = 'none'
+      }
+    }
+  })
 
 async function buscarStatus() {
   const statusArray = []
@@ -78,6 +101,26 @@ function registrarNovaEvte() {
   }
 
   return dadosFormCad
+}
+
+let buttonTeste = document.querySelector('[id=testeCad]')
+
+buttonTeste.addEventListener('click', event => {
+  event.preventDefault()
+  let dataTeste = document.querySelector('[name=form-data]').value
+  console.log(dataTeste)
+})
+
+// CONVERSOR DE PADRÃO DE DATA
+function formatarDataParaPtBr(dataIso) {
+  if (!dataIso) return ''
+
+  if (dataIso.includes('-')) {
+    const [ano, mes, dia] = dataIso.split('-')
+    return `${dia}/${mes}/${ano}`
+  } else {
+    return dataIso
+  }
 }
 
 function zerarForm() {
@@ -166,11 +209,16 @@ async function popularTabela() {
   const querySnapshot = await getDocs(consulta)
 
   const snapFiltrado = querySnapshot.docs.filter(item => {
-    return item.data().data.endsWith(anoEscolhido)
+    if (item.data().data.includes('-')) {
+      return item.data().data.startsWith(anoEscolhido)
+    } else {
+      return item.data().data.endsWith(anoEscolhido)
+    }
   })
 
   snapFiltrado.forEach(item => {
     const dados = item.data()
+    let dataFormatada = formatarDataParaPtBr(dados.data)
 
     const newLine = `
       <tr id="${item.id}">
@@ -179,12 +227,12 @@ async function popularTabela() {
         <td class="dados_nomeInteressado">${dados.nomeInteressado}</td>
         
         
-        <td class="dados_celular">${dados.celular}</td>
+        
         
         <td class="dados_status">${dados.status}</td>
         <td class="dados_localidade">${dados.localidade}</td>
         
-        <td class="dados_data">${dados.data}</td>
+        <td class="dados_data">${dataFormatada}</td>
       </tr>
     `
     tbody.innerHTML += newLine
@@ -279,13 +327,25 @@ viewEvteButton.addEventListener('click', event => {
   modalView.style.display = 'block'
 })
 
-// ATIVAR BOTÃO EDITAR
-
+// EDITAR NO BD
 async function editarEvte(idDoDocumento, dadosAtualizados) {
   try {
     const docRef = doc(db, 'evtes', idDoDocumento)
     await updateDoc(docRef, dadosAtualizados)
     console.log('Documento atualizado com sucesso! ID:', idDoDocumento)
+    return true
+  } catch (e) {
+    console.error('Erro ao atualizar documento:', e)
+    return false
+  }
+}
+
+// DELETAR NO BD
+async function deleteEvte(idDoDocumento) {
+  try {
+    const docRef = doc(db, 'evtes', idDoDocumento)
+    await deleteDoc(docRef)
+    console.log('Documento excluído com sucesso! ID:', idDoDocumento)
     return true
   } catch (e) {
     console.error('Erro ao atualizar documento:', e)
@@ -311,11 +371,56 @@ function allowEdit() {
   dataView.removeAttribute('readonly')
 }
 
+function disableEdit() {
+  empreendimentoView.setAttribute('readonly', 'readonly')
+  empresaView.setAttribute('readonly', 'readonly')
+
+  nomeInteressadoView.setAttribute('readonly', 'readonly')
+  telefoneView.setAttribute('readonly', 'readonly')
+  emailView.setAttribute('readonly', 'readonly')
+  celularView.setAttribute('readonly', 'readonly')
+
+  tipoView.setAttribute('readonly', 'readonly')
+  statusView.setAttribute('readonly', 'readonly')
+  localidadeView.setAttribute('readonly', 'readonly')
+  protocoloView.setAttribute('readonly', 'readonly')
+  dataView.setAttribute('readonly', 'readonly')
+}
+
+// GETS BOTÕES DE FUNÇÕES DA MODAL VIEW
 const editButton = document.querySelector('[id=editView]')
+const cancelButton = document.querySelector('[id=cancelView]')
+const deleteButton = document.querySelector('[id=removeButtonView]')
+
+// FUNÇÃO EDITAR
 editButton.addEventListener('click', event => {
   updateButton.classList.remove('ocultar')
+  cancelButton.classList.remove('ocultar')
+  editButton.classList.add('ocultar')
+  deleteButton.classList.remove('ocultar')
   allowEdit()
 })
+
+// FUNÇÃO CANCELAR
+cancelButton.addEventListener('click', event => {
+  editButton.classList.remove('ocultar')
+  cancelButton.classList.add('ocultar')
+  updateButton.classList.add('ocultar')
+  deleteButton.classList.add('ocultar')
+
+  disableEdit()
+})
+
+function estabilizeModal() {
+  editButton.classList.remove('ocultar')
+  cancelButton.classList.add('ocultar')
+  updateButton.classList.add('ocultar')
+  deleteButton.classList.add('ocultar')
+  buttonVisualizar.classList.add('ocultar')
+
+  disableEdit()
+  popularTabela()
+}
 
 function editEvte() {
   const editeFormView = {
@@ -340,7 +445,25 @@ function editEvte() {
 updateButton.addEventListener('click', event => {
   event.preventDefault()
   const dadosEditView = editEvte()
-  console.log(idLinhaSelecionada, dadosEditView)
   editarEvte(idLinhaSelecionada, dadosEditView)
+  updateButton.classList.add('ocultar')
+  popularTabela()
+  disableEdit()
+})
+
+deleteButton.addEventListener('click', event => {
+  let resultado = confirm('Tem certeza que deseja continuar?')
+
+  if (resultado) {
+    // Código a ser executado se o usuário clicar em "OK"
+    console.log('Ação confirmada!')
+    event.preventDefault(deleteEvte(idLinhaSelecionada))
+    estabilizeModal()
+    modalView.style.display = 'none'
+  } else {
+    // Código a ser executado se o usuário clicar em "Cancelar"
+    console.log('Ação cancelada.')
+  }
+
   popularTabela()
 })

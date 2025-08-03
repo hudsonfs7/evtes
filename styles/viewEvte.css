@@ -111,6 +111,11 @@ input:read-only {
   margin-bottom: 8px;
 }
 
+.buttonsUpdateView {
+  display: flex;
+  justify-content: space-between;
+}
+
 button.commonButton {
   padding: 4px 8px 4px 8px;
   background-color: none;
@@ -135,4 +140,15 @@ button#cancelView:hover {
 button.commonButton:hover {
   background-color: #625dc967;
   border: 1px solid #625dc9;
+}
+
+button.remove {
+  border: 2px solid #fff;
+  border: 1px solid #ff4400;
+}
+
+button.remove:hover {
+  border: 1px solid #ff4400;
+  background-color: #c9745d;
+  color: #fff;
 }

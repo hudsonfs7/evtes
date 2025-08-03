@@ -104,23 +104,4 @@ fetch('../modals/registrarEvte.html')
 // Abrir Modal View
 // const modalViewButton = document.getElementById('abastecerEvte')
 
-// Abrir Modal
-fetch('../modals/viewEvte.html')
-  .then(response => response.text())
-  .then(data => {
-    document.body.insertAdjacentHTML('beforeend', data)
 
-    const modalView = document.getElementById('modalView')
-    const closeModalView = document.getElementById('closeModalView')
-    const cancelModalView = document.getElementById('cancelView')
-
-    
-      closeModalView.onclick = () => (modalView.style.display = 'none')
-      cancelModalView.onclick = () => (modalView.style.display = 'none')
-      window.onclick = e => {
-        if (e.target == modalView) {
-          modalView.style.display = 'none'
-        }
-      
-    }
-  })
