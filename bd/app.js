@@ -6,7 +6,8 @@ import {
   query,
   orderBy,
   doc,
-  getDoc
+  getDoc,
+  updateDoc
 } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js'
 
 async function buscarStatus() {
@@ -280,6 +281,18 @@ viewEvteButton.addEventListener('click', event => {
 
 // ATIVAR BOTÃO EDITAR
 
+async function editarEvte(idDoDocumento, dadosAtualizados) {
+  try {
+    const docRef = doc(db, 'evtes', idDoDocumento)
+    await updateDoc(docRef, dadosAtualizados)
+    console.log('Documento atualizado com sucesso! ID:', idDoDocumento)
+    return true
+  } catch (e) {
+    console.error('Erro ao atualizar documento:', e)
+    return false
+  }
+}
+
 const updateButton = document.querySelector('[id=updateView]')
 
 function allowEdit() {
@@ -302,4 +315,32 @@ const editButton = document.querySelector('[id=editView]')
 editButton.addEventListener('click', event => {
   updateButton.classList.remove('ocultar')
   allowEdit()
+})
+
+function editEvte() {
+  const editeFormView = {
+    empreendimento: empreendimentoView.value,
+    empresa: empresaView.value,
+
+    nomeInteressado: nomeInteressadoView.value,
+    telefone: telefoneView.value,
+    email: emailView.value,
+    celular: celularView.value,
+
+    tipo: tipoView.value,
+    status: statusView.value,
+    localidade: localidadeView.value,
+    protocolo: protocoloView.value,
+    data: dataView.value
+  }
+
+  return editeFormView
+}
+
+updateButton.addEventListener('click', event => {
+  event.preventDefault()
+  const dadosEditView = editEvte()
+  console.log(idLinhaSelecionada, dadosEditView)
+  editarEvte(idLinhaSelecionada, dadosEditView)
+  popularTabela()
 })
