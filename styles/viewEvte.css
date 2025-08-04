@@ -166,6 +166,15 @@ button.remove:hover {
 }
 
 @media screen and (max-width: 768px) {
+  .modalView {
+    height: calc(100vh - 1px);
+    overflow-y: auto;
+  }
+
+  .viewForm {
+    width: 85vw;
+  }
+
   .dadosEmpreendimentoView {
     display: grid;
     grid-template-columns: repeat(auto-fill, 100%);
@@ -184,7 +193,6 @@ button.remove:hover {
     display: flex;
     flex-direction: column;
     gap: 0;
-    
   }
 
   .dadosEvteView input {
