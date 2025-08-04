@@ -1,5 +1,5 @@
 .modalView {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 10;
   left: 0;
@@ -60,7 +60,7 @@ input:read-only {
 
 .dadosEmpreendimentoView {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, 48%);
 
   border: 1px solid #45454550;
   gap: 15px;
@@ -69,7 +69,7 @@ input:read-only {
   margin-bottom: 16px;
 }
 .dadosEmpreendimentoView input {
-  width: 300px;
+  width: 95%;
 }
 
 .contatoView {
@@ -83,16 +83,28 @@ input:read-only {
   margin-bottom: 16px;
 }
 
+.contatoView input {
+  width: 98%;
+}
+
 .dadosEvteView {
   display: grid;
   grid-template-columns: 10% 40% 10% 40%;
 
   border: 1px solid #45454550;
-  gap: 10px;
+  gap: 15px;
   padding: 1rem;
   border-radius: 4px;
   margin-bottom: 16px;
   /* text-align: center; */
+}
+
+.dadosEvteView label {
+  width: 10%;
+}
+
+.dadosEvteView input {
+  width: 60%;
 }
 
 .closeView {
@@ -151,4 +163,31 @@ button.remove:hover {
   border: 1px solid #ff4400;
   background-color: #c9745d;
   color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .dadosEmpreendimentoView {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
+
+  .dadosEmpreendimentoView input {
+    width: 100%;
+  }
+
+  .contatoView {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dadosEvteView {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    
+  }
+
+  .dadosEvteView input {
+    width: 80%;
+  }
 }
