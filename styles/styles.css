@@ -39,6 +39,7 @@ header {
 
 .logo h2 {
   color: var(--cor-logo-strong);
+  font-weight: 500;
 }
 
 .logo span {
@@ -70,7 +71,7 @@ main {
   display: flex;
   flex: 25 1 600px;
   flex-wrap: wrap;
-  height: calc(100vh - 20vh);
+  min-height: calc(100vh - 20vh);
 
   padding: 10px;
 
@@ -94,6 +95,7 @@ footer {
   height: 10vh;
 
   background-color: var(--cor-footer);
+  box-shadow: 5px 0px 10px #888888 !important;
 }
 
 /* Ativação de Botões para o JS */
