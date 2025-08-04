@@ -130,14 +130,6 @@ function registrarNovaEvte() {
   return dadosFormCad
 }
 
-let buttonTeste = document.querySelector('[id=testeCad]')
-
-buttonTeste.addEventListener('click', event => {
-  event.preventDefault()
-  let dataTeste = document.querySelector('[name=form-data]').value
-  console.log(dataTeste)
-})
-
 // CONVERSOR DE PADRÃO DE DATA
 function formatarDataParaPtBr(dataIso) {
   if (!dataIso) return ''
