@@ -76,9 +76,13 @@ function zerarForm() {
   })
 }
 
+// FOOTER
+const footer = document.querySelector('footer')
 
+footer.innerHTML =
+  '<p><strong>CadEVTE</strong> v1 &copy; 2025 - <a href="#">Huson Souza</a></p>'
 
-// Abrir Modal View
-// const modalViewButton = document.getElementById('abastecerEvte')
+// SIDEBAR
+const sideBar = document.querySelector('section')
 
-
+sideBar.innerHTML = '<h2>Sidebar</h2> <p>[...].</p>'

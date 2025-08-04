@@ -23,18 +23,19 @@ fetch('../modals/viewEvte.html')
     closeModalView.onclick = () => {
       modalView.style.display = 'none'
       estabilizeModal()
+      atualizarPagina()
     }
 
     window.onclick = e => {
       if (e.target == modalView) {
         estabilizeModal()
         modalView.style.display = 'none'
+        atualizarPagina()
       }
     }
   })
 
-
-  // ABRIR MODAL REGISTRO
+// ABRIR MODAL REGISTRO
 fetch('../modals/registrarEvte.html')
   .then(response => response.text())
   .then(data => {
@@ -490,6 +491,4 @@ deleteButton.addEventListener('click', event => {
     // Código a ser executado se o usuário clicar em "Cancelar"
     console.log('Ação cancelada.')
   }
-
-  popularTabela()
 })
