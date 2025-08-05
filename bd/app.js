@@ -23,14 +23,12 @@ fetch('../modals/viewEvte.html')
     closeModalView.onclick = () => {
       modalView.style.display = 'none'
       estabilizeModal()
-      atualizarPagina()
     }
 
     window.onclick = e => {
       if (e.target == modalView) {
         estabilizeModal()
         modalView.style.display = 'none'
-        atualizarPagina()
       }
     }
   })
@@ -131,14 +129,17 @@ function registrarNovaEvte() {
 }
 
 // CONVERSOR DE PADRÃO DE DATA
-function formatarDataParaPtBr(dataIso) {
-  if (!dataIso) return ''
+function formatarDataParaPtBr(dataFormat) {
+  if (!dataFormat) return ''
 
-  if (dataIso.includes('-')) {
-    const [ano, mes, dia] = dataIso.split('-')
+  if (dataFormat.includes('-')) {
+    const [ano, mes, dia] = dataFormat.split('-')
     return `${dia}/${mes}/${ano}`
+  } else if (dataFormat.includes('/')) {
+    const [dia, mes, ano] = dataFormat.split('/')
+    return `${ano}-${dia}-${mes}`
   } else {
-    return dataIso
+    return dataFormat
   }
 }
 
@@ -277,6 +278,8 @@ let statusView = document.querySelector('[name=statusView]')
 let localidadeView = document.querySelector('[name=localidadesView]')
 let protocoloView = document.querySelector('[name=protocoloView]')
 let dataView = document.querySelector('[name=dataView]')
+let dataVtView = document.querySelector('[name=dataVtView]')
+let numberEvte = document.querySelector('[name=inforevte]')
 
 // ID LINHA SELECIONADA
 let idLinhaSelecionada = ''
@@ -293,7 +296,6 @@ tbodyTabela.addEventListener('click', event => {
     if (linhaClicadaAnterior === linhaClicada) {
       // Se a linha clicada já for a selecionada, deseleciona
       linhaClicada.classList.remove('linhaSelecionada')
-      console.log('N Existe1')
       buttonVisualizar.classList.add('ocultar')
     } else {
       // Caso contrário, remove a seleção da anterior (se existir)
@@ -303,7 +305,6 @@ tbodyTabela.addEventListener('click', event => {
       }
       // E adiciona a seleção à nova linha clicada
       linhaClicada.classList.add('linhaSelecionada')
-      console.log('Existe')
       buttonVisualizar.classList.remove('ocultar')
     }
   }
@@ -318,6 +319,12 @@ async function showView(id) {
     const snapDocView = await getDoc(consultaDocView)
     const dadosDocView = snapDocView.data()
 
+    if (dadosDocView.vt === undefined) {
+      numberEvte.value = 'Ñ EMITIDA'
+    } else {
+      numberEvte.value = dadosDocView.vt
+    }
+
     empreendimentoView.value = dadosDocView.empreendimento
     empresaView.value = dadosDocView.empresa
 
@@ -331,6 +338,9 @@ async function showView(id) {
     localidadeView.value = dadosDocView.localidade
     protocoloView.value = dadosDocView.protocolo
     dataView.value = dadosDocView.data
+    dataVtView.value = formatarDataParaPtBr(dadosDocView.data_vt)
+
+    console.log(formatarDataParaPtBr(dadosDocView.data_vt))
   } catch (e) {
     console.error('Erro ao buscar documento:', e)
 
@@ -375,6 +385,8 @@ async function deleteEvte(idDoDocumento) {
 const updateButton = document.querySelector('[id=updateView]')
 
 function allowEdit() {
+  numberEvte.removeAttribute('readonly')
+
   empreendimentoView.removeAttribute('readonly')
   empresaView.removeAttribute('readonly')
 
@@ -388,9 +400,12 @@ function allowEdit() {
   localidadeView.removeAttribute('readonly')
   protocoloView.removeAttribute('readonly')
   dataView.removeAttribute('readonly')
+  dataVtView.removeAttribute('readonly')
 }
 
 function disableEdit() {
+  numberEvte.setAttribute('readonly', 'readonly')
+
   empreendimentoView.setAttribute('readonly', 'readonly')
   empresaView.setAttribute('readonly', 'readonly')
 
@@ -404,6 +419,7 @@ function disableEdit() {
   localidadeView.setAttribute('readonly', 'readonly')
   protocoloView.setAttribute('readonly', 'readonly')
   dataView.setAttribute('readonly', 'readonly')
+  dataVtView.setAttribute('readonly', 'readonly')
 }
 
 // GETS BOTÕES DE FUNÇÕES DA MODAL VIEW
