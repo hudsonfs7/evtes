@@ -36,7 +36,7 @@ label.titleView {
   font-weight: 600;
 }
 
-input.view {
+input.view, select.view {
   margin: 0;
   width: 200px;
   outline: none;
@@ -51,7 +51,7 @@ input.view {
   color: var(--cor-titleForm);
 }
 
-input:read-only {
+input:read-only, select:read-only {
   font-family: 'Poppins' sans-serif;
   color: var(--cor-infoForm);
   font-weight: 500;
@@ -68,6 +68,7 @@ input:read-only {
   border-radius: 4px;
   margin-bottom: 16px;
 }
+
 .dadosEmpreendimentoView input {
   width: 95%;
 }
@@ -103,7 +104,7 @@ input:read-only {
   width: 10%;
 }
 
-.dadosEvteView input {
+.dadosEvteView input, .dadosEvteView select {
   width: 60%;
 }
 

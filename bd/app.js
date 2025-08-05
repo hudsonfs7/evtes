@@ -143,6 +143,12 @@ function formatarDataParaPtBr(dataFormat) {
   }
 }
 
+// DATA VIEW TEXT OR DATE
+function whatTypeOfDate(dateType) {
+  if (dateType.lenght == 4) {
+  }
+}
+
 function zerarForm() {
   // All GETs
   let empreendimento = document.querySelector('[name=form-empreendimento]')
@@ -320,7 +326,7 @@ async function showView(id) {
     const dadosDocView = snapDocView.data()
 
     if (dadosDocView.vt === undefined) {
-      numberEvte.value = 'Ñ EMITIDA'
+      numberEvte.value = 'NÃO EMITIDA'
     } else {
       numberEvte.value = dadosDocView.vt
     }
@@ -337,10 +343,8 @@ async function showView(id) {
     statusView.value = dadosDocView.status
     localidadeView.value = dadosDocView.localidade
     protocoloView.value = dadosDocView.protocolo
-    dataView.value = dadosDocView.data
+    dataView.value = formatarDataParaPtBr(dadosDocView.data)
     dataVtView.value = formatarDataParaPtBr(dadosDocView.data_vt)
-
-    console.log(formatarDataParaPtBr(dadosDocView.data_vt))
   } catch (e) {
     console.error('Erro ao buscar documento:', e)
 
