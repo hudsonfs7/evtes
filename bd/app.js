@@ -475,7 +475,8 @@ function editEvte() {
     status: statusView.value,
     localidade: localidadeView.value,
     protocolo: protocoloView.value,
-    data: dataView.value
+    data: dataView.value,
+    vt: numberEvte.value
   }
 
   return editeFormView
